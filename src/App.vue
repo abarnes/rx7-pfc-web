@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">CSV</router-link> |
+      <router-link to="/drive-log">Drive Log</router-link> | 
       <router-link to="/live">Live</router-link>
     </div>
     <router-view/>

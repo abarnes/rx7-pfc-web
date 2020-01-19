@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="gauges" v-if="shouldRenderGauges">
-        <gauge v-for="(config, key) in gauges" :key="key" :config="config"></gauge>
+        <gauge v-for="(config, key) in gaugesToDisplay" :key="key" :config="config"></gauge>
       </div>
       <timestamp-selector/>
   </div>
@@ -24,6 +24,13 @@ export default {
   computed: {
     shouldRenderGauges() {
       return this.$store.state.EngineData.timestamps.length !== 0;
+    },
+    gaugesToDisplay() {
+      if (this.$store.state.EngineData.timestamps.length === 0) {
+        return [];
+      }
+      
+      return Object.getOwnPropertyNames(this.$store.state.EngineData.data[0]);
     }
   },
 }

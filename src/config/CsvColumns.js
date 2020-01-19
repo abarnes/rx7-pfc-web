@@ -1,8 +1,8 @@
 export const csvColumns = [
     "timestamp",
-    "command",
-    "lat",
-    "long",
+    // "command",
+    // "lat",
+    // "long",
     "rpm",
     "boost",
     "waterTemp",

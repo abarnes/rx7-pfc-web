@@ -1,4 +1,4 @@
-import { SELECT_TIMESTAMP, ADD_DATAPOINT, REPLACE_DATAPOINTS } from '@/store/actions'
+import { SELECT_TIMESTAMP, ADD_DATAPOINT, REPLACE_DATAPOINTS, CLEAR_DATA } from '@/store/actions'
 
 const DATAPOINT = {
   // basic
@@ -65,10 +65,14 @@ const state = {
 };
 
 const mutations = {
+
   ADD_DATAPOINT (state, payload) {
+    console.log("here", payload);
     if (payload && typeof payload === "object") {
       state.data.push(payload);
       state.timestamps.push(payload.timestamp);
+      state.currentTimestamp = payload.timestamp;
+      state.currentData = payload;
     }
   },
 
@@ -80,8 +84,8 @@ const mutations = {
         timestamps.push(datapoint.timestamp);
       }
       state.timestamps = timestamps;
-      state.currentTimestamp = payload[0].timestamp
-      state.currentData = payload[0]
+      state.currentTimestamp = payload[0].timestamp;
+      state.currentData = payload[0];
     }
 
     /*
@@ -99,6 +103,13 @@ const mutations = {
       state.currentTimestamp = payload;
       state.currentData = state.data[index];
     }
+  },
+
+  CLEAR_DATA (state) {
+    state.currentTimestamp = 0;
+    state.currentData = {};
+    state.data = [];
+    state.timestamps = [];
   }
 
 }
