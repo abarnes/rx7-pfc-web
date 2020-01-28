@@ -30,7 +30,14 @@ export default {
         return [];
       }
       
-      return Object.getOwnPropertyNames(this.$store.state.EngineData.data[0]);
+      const dataAvailable = Object.getOwnPropertyNames(this.$store.state.EngineData.data[0]);
+      let resultingGraphs = [];
+      for (let item of dataAvailable) {
+        if (typeof gauges[item] !== 'undefined') {
+          resultingGraphs.push(gauges[item]);
+        }
+      }
+      return resultingGraphs;
     }
   },
 }

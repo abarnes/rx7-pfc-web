@@ -63,7 +63,6 @@ export default {
             const reader = new FileReader();
             reader.onload = () => {
                 const datapoints = convertCsvRowsToObject(reader.result.split("\n"));
-                console.log(datapoints);
                 if (datapoints.length) {
                     this.$store.commit(REPLACE_DATA, datapoints);
                 } else {

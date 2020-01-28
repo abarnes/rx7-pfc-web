@@ -17,6 +17,8 @@ import { SELECT_TIMESTAMP } from '@/store/actions.js'
 
 const NUMBER_OF_MARKERS = 10;
 
+let handler;
+
 export default {
     name: 'TimestampSelector',
     data () {
@@ -52,8 +54,10 @@ export default {
     },
     methods: {
         handleTimestampChange(e) {
-            const selectedTime = parseInt(e.target.value, 10);
-            this.$store.commit(SELECT_TIMESTAMP, findClosestTimestampInArray(selectedTime, this.timestamps));
+            handler = setTimeout(() => {
+              const selectedTime = parseInt(e.target.value, 10);
+              this.$store.commit(SELECT_TIMESTAMP, findClosestTimestampInArray(selectedTime, this.timestamps));
+            }, 200);
         },
 
         computeDate() {

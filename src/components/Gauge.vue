@@ -76,11 +76,13 @@
                 const currentTime = this.$store.state.EngineData.currentTimestamp;
                 const minTime = currentTime - (GRAPH_TIME_SECONDS * 1000);
                 let graphableDataPoints = [];
-                for (let i = this.$store.state.EngineData.timestamps.indexOf(currentTime); i > 0; i--) {
+                const index = this.$store.state.EngineData.timestamps.indexOf(currentTime);
+                for (let i = index; (i > (index - 30) || i === 0); i--) { // this doesn't work without timestamps
                     const datapoint = this.$store.state.EngineData.data[i];
-                    if (datapoint.timestamp >= minTime) {
+                    if (datapoint && datapoint.timestamp >= minTime) {
+                        // console.log(datapoint[this.config.stateKey], this.config.stateKey);
                         const graphPoint = {
-                            x: moment(datapoint.timestamp),
+                            x: (datapoint.timestamp > 1000000 ? moment(datapoint.timestamp) : moment(datapoint.timestamp, "X")),
                             y: this.transformValue(datapoint[this.config.stateKey])
                         };
                         graphableDataPoints.unshift(graphPoint);

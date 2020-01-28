@@ -1,11 +1,11 @@
 export default {
     "Time(S)": {
         transform: null,
-        label: "Time"
+        label: "timestamp"
     },
     "RPM": {
         transform: null,
-        label: "RPM" 
+        label: "rpm" 
     },
     "PIM": {
         transform: null,

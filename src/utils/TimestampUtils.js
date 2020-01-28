@@ -21,14 +21,12 @@ export const findClosestTimestampInArray = (timestamp, timestampArray) => {
         return 0;
     }
 
-    if (typeof timestampArray[timestamp] !== "undefined") {
-        return timestamp;
-    } else {
-        // return timestampArray.reduce((prev, curr) => curr - timestamp < prev - timestamp ? curr : prev);
-        for (let i = 0; i < timestampArray.length; i++) {
-            if (timestampArray[i] > timestamp) {
-                return (i === 0) ? timestampArray[0] : timestampArray[i - 1];
-            }
+    // return timestampArray.reduce((prev, curr) => curr - timestamp < prev - timestamp ? curr : prev);
+    for (let i = 0; i < timestampArray.length; i++) {
+        if (timestampArray[i] > timestamp) {
+            return (i === 0) ? timestampArray[0] : timestampArray[i - 1];
         }
     }
+
+    return 0;
 }

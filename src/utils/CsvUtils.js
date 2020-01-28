@@ -29,9 +29,9 @@ export const convertCsvRowsToObject = (rows) => {
             }
             results.push(resultingObject)
         }
-        console.log(results);
 
     } else {
+        
         let results = [];
         for (let row of rows) {
             if (row && typeof row === "string") {
